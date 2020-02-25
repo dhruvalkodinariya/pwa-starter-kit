@@ -60,7 +60,7 @@ class MyView4 extends connect(store)(LitElement) {
         width : 200px;
 
       }
-      dw-surface{
+      dw-surface,surface-test-ele{
         margin:14px;
         padding:24px;
       }
@@ -106,7 +106,7 @@ class MyView4 extends connect(store)(LitElement) {
       const archiveList = this.archiveList;
       const aList = archiveList ? Object.keys(this.archiveList).map((item)=>this.archiveList[item]):[];
     return html`
-    <surface-test-ele></surface-test-ele>
+    <surface-test-ele elevation="24"></surface-test-ele>
     
       <!-- <dw-radio-button>One</dw-radio-button>
       <dw-radio-button>Two</dw-radio-button>

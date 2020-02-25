@@ -8,14 +8,14 @@ export class SurfaceTestEle extends DwSurface{
     //     ${this._getContentTemplate}
     //     `;
     // }
-    static get styles() {
-        return css`
-          :host{
-            display : block;
-            margin:16px;
-            padding : 24px;
-          }`
-    }
+    // static get styles() {
+    //     return css`
+    //       :host{
+    //         display : block;
+    //         margin:16px;
+    //         padding : 24px;
+    //       }`
+    // }
 
     get _getContentTemplate(){
         return html`
