@@ -33,6 +33,8 @@ import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import { menuIcon } from './my-icons.js';
 import './snack-bar.js';
+import {ThemeStyle} from '@dreamworld/material-styles/theme';
+import {Typography} from '@dreamworld/material-styles/typography';
 
 class MyApp extends connect(store)(LitElement) {
   static get properties() {
@@ -47,6 +49,8 @@ class MyApp extends connect(store)(LitElement) {
 
   static get styles() {
     return [
+      ThemeStyle,
+      Typography,
       css`
         :host {
           display: block;
@@ -206,6 +210,7 @@ class MyApp extends connect(store)(LitElement) {
           <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
           <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
           <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
+          <a ?selected="${this._page === 'view4'}" href="/view4">View Four</a>
         </nav>
       </app-header>
 
@@ -217,14 +222,19 @@ class MyApp extends connect(store)(LitElement) {
           <a ?selected="${this._page === 'view1'}" href="/view1">View One</a>
           <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
           <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
+          <a ?selected="${this._page === 'view4'}" href="/view4">View Four</a>
         </nav>
       </app-drawer>
 
       <!-- Main content -->
-      <main role="main" class="main-content">
+      <main role="main" class="main-content" @custom-click="${(e)=>{console.log("My-App Custom Click with parent element::",e.target)}}">
         <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
         <my-view2 class="page" ?active="${this._page === 'view2'}"></my-view2>
         <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
+        <my-view4 class="page" ?active="${this._page === 'view4'}" @custom-click="${(e)=>{console.log("My-App Custom Click::",e.target)}}">
+        <h2>Hello Slot Content</h2>
+        <!-- <div name="text">This is tezt</div> -->
+        </my-view4>
         <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
       </main>
 

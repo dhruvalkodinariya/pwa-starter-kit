@@ -19,12 +19,21 @@
     "test:regenerate_screenshots": "mocha test/integration/screenshots-baseline/regenerate.js --timeout=15000"
   },
   "dependencies": {
+    "@dreamworld/dw-button": "^1.1.0",
+    "@dreamworld/dw-checkbox": "^1.2.1",
+    "@dreamworld/dw-date-input": "^1.3.0",
+    "@dreamworld/dw-input": "^1.7.0",
+    "@dreamworld/dw-radio-button": "^1.0.2",
+    "@dreamworld/dw-surface": "^1.1.0",
+    "@material/mwc-switch": "^0.13.0",
     "@polymer/app-layout": "^3.0.0",
+    "@polymer/paper-spinner": "^3.0.2",
     "@polymer/polymer": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.4",
     "lit-element": "^2.0.1",
     "pwa-helpers": "^0.9.0",
     "redux": "^4.0.0",
+    "redux-saga": "^1.1.3",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
