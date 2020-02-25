@@ -39,3 +39,5 @@ export const store = createStore(
 store.addReducers({
   app
 });
+
+console.log("log from store.js")
