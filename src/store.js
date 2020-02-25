@@ -46,5 +46,3 @@ sagaMiddleware.run(rootSaga)
 store.addReducers({
   app
 });
-
-console.log("log from store.js")

@@ -194,6 +194,7 @@ class MyView4 extends connect(store)(LitElement) {
     // this.shadowRoot.querySelector('#firstEle').formatText((value)=>{
     //   return value+value;
     // })
+    console.log('feature-testing added')
   }
 
   shouldUpdate(){
