@@ -50,6 +50,16 @@ const app = (state = INITIAL_STATE, action) => {
         ...state,
         snackbarOpened: false
       };
+    case 'USER_FETCH_FAILED':
+      return {
+        ...state,
+        fetchDetails: action.message
+      };
+    case 'USER_FETCH_SUCCEED':
+      return {
+        ...state,
+        fetchDetails: action.session
+      };
     default:
       return state;
   }

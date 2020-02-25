@@ -82,6 +82,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- Add any global styles for body, document, etc. -->
     <style>
+      html{
+        --themeColor: #b94c7b;
+      }
+      .theme{
+        --custom-theme-color: #E91E63;
+      }
       @font-face {
         font-family: 'Pacifico';
         font-style: normal;
@@ -104,13 +110,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
   </head>
   <body>
-    <my-app appTitle="my app"></my-app>
+    <my-app appTitle="my app" id="myApp"></my-app>
     <noscript>
       Please enable JavaScript to view this website.
     </noscript>
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
     <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <!-- Built with love using PWA Starter Kit -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
     <script type="module" src="src/components/my-app.js"></script>
+    <script>
+
+      let myapp = document.getElementById('myApp');
+      myapp.addEventListener('custom-click',(e)=>{
+        console.log("Document level custom-click event::",e.target)
+      })
+
+      function fn4(){
+        console.log('fn4 called.')
+      }
+      function fn2(){
+        Promise.resolve().then(fn4)
+        fn3();
+      }
+      
+      function fn3(){
+        setTimeout(()=>{
+          console.log("setTimeout called");
+        },0);  
+      }
+
+      function fn1(){
+        console.log("first called");
+        fn2();
+        
+        Promise.resolve().then(fn5);
+        console.log("second called.")
+      }
+
+      function fn5(){
+        console.log("task completed.");
+      }
+
+      
+        </script>
   </body>
 </html>
