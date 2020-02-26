@@ -8,7 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css ,svg} from 'lit-element';
 import { setPassiveTouchGestures } from '@polymer/polymer/lib/utils/settings.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
@@ -35,7 +35,8 @@ import { menuIcon } from './my-icons.js';
 import './snack-bar.js';
 import {ThemeStyle} from '@dreamworld/material-styles/theme';
 import {Typography} from '@dreamworld/material-styles/typography';
-
+import '@dreamworld/dw-snackbar/dw-snackbar';
+import {DwIcon} from '@dreamworld/dw-icon/dw-icon';
 class MyApp extends connect(store)(LitElement) {
   static get properties() {
     return {
@@ -245,6 +246,7 @@ class MyApp extends connect(store)(LitElement) {
       <snack-bar ?active="${this._snackbarOpened}">
         You are now ${this._offline ? 'offline' : 'online'}.
       </snack-bar>
+      <dw-snackbar></dw-snackbar>
     `;
   }
 
@@ -253,6 +255,9 @@ class MyApp extends connect(store)(LitElement) {
     // To force all event listeners for gestures to be passive.
     // See https://www.polymer-project.org/3.0/docs/devguide/settings#setting-passive-touch-gestures
     setPassiveTouchGestures(true);
+    DwIcon.addIcons({
+      custom_circle: svg`<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />`
+    });
   }
 
   firstUpdated() {

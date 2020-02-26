@@ -32,7 +32,9 @@ import '@dreamworld/dw-checkbox/dw-checkbox';
 import '@dreamworld/dw-surface/dw-surface';
 import './surface-test-ele';
 import '@dreamworld/dw-button/dw-button';
-
+import {show} from '@dreamworld/dw-snackbar/dw-snackbar';
+import '@dreamworld/dw-icon/dw-icon';
+import '@dreamworld/dw-currency/dw-currency-format';
 store.addReducers({
   custom
 });
@@ -80,7 +82,9 @@ class MyView4 extends connect(store)(LitElement) {
       styles: {type:Object},
       loading: {type:Boolean},
       _loading: {type:Boolean},
-      archiveList: {type :Array}
+      archiveList: {type :Array},
+      actionUndo: {type:Boolean},
+      _undoId: {type:String}
     };
   }
 
@@ -127,7 +131,8 @@ class MyView4 extends connect(store)(LitElement) {
         <dw-radio-button name="fruit1" id="3">orange</dw-radio-button>
       </dw-radio-group> -->
 
-      
+      <dw-icon name="polymer" size="32"></dw-icon>
+      <dw-currency-format value=${150000} currency="INR"></dw-currency-format>
     <dw-form>
     <dw-checkbox name="c1" indeterminate></dw-checkbox>
       <dw-checkbox name="c2"></dw-checkbox>
@@ -169,9 +174,9 @@ class MyView4 extends connect(store)(LitElement) {
 
         <input type="file" name="file" multiple id="uploadFile"></input>
         <button @click="${this._uploadEvent}">Upload</button>
-        <button @click="${this._onUndoClick}" >UNDO ARCHIVE</button>
+        <!-- ${this._actionUndo?html`<button @click="${this._onUndoClick}" >UNDO ARCHIVE</button>`:null} -->
         ${repeat(aList,(i)=>i.id,(i,index)=>
-        html `${!i.archive?html`<li>${i.name}</li><button id="${i.id}" @click="${()=>{store.dispatch({type:'ARCHIVE',archiveId: `${i.id}_${i.name}`,id:i.id})}}">Archive</button>`:null}`
+        html `${!i.archive?html`<li>${i.name}</li><button id="${i.id}" @click="${()=>{store.dispatch({type:'ARCHIVE',archiveId: `${i.id}_${i.name}`,id:i.id});this._showSnackbar()}}">Archive</button>`:null}`
         )}
         <dw-input label="TEST"></dw-input>
         <dw-button label="Click" icon="alarm"></dw-button>
@@ -288,12 +293,28 @@ class MyView4 extends connect(store)(LitElement) {
   }
 
   _onUndoClick(){
-    // store.dispatch({type:'UNDO',id:})
+    
+  }
+  _showSnackbar(){
+    show({
+      id: this._undoId,
+      message: 'UNDO Archived', //Required
+      type: 'ERROR',  // (Optional) Possible values INFO | WARN | ERROR. Default: INFO
+      timeout: 5000,  // (Optional) Time is in milliseconds after which message should be
+      actionButton: { 
+        caption: 'UNDO',
+        callback: ()=>{
+          store.dispatch({type:'UNDO',undoId:this._undoId})
+        }
+      }
+    })
   }
 
   stateChanged(state){
     this._loading = state.custom.loading;
     this.archiveList = state.custom.list;
+    this._actionUndo = state.custom.actionUndo;
+    this._undoId = state.custom.undoId;
   }
 
 }

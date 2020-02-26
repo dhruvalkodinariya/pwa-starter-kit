@@ -21,9 +21,13 @@
   "dependencies": {
     "@dreamworld/dw-button": "^1.1.0",
     "@dreamworld/dw-checkbox": "^1.2.1",
+    "@dreamworld/dw-currency": "^1.0.0",
     "@dreamworld/dw-date-input": "^1.3.0",
+    "@dreamworld/dw-icon-button": "^1.2.1",
     "@dreamworld/dw-input": "^1.7.0",
+    "@dreamworld/dw-multi-value-field": "^1.0.0",
     "@dreamworld/dw-radio-button": "^1.0.2",
+    "@dreamworld/dw-snackbar": "^1.0.1",
     "@dreamworld/dw-surface": "^1.1.0",
     "@material/mwc-switch": "^0.13.0",
     "@polymer/app-layout": "^3.0.0",

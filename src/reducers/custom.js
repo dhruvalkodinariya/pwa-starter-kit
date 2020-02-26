@@ -41,9 +41,17 @@ const custom = (state = INITIAL_STATE, action) => {
             return {
                 ...state
             };
-        case 'ARCHIVE':
+        case 'UNDO_UI_SHOW':
             return {
-                ...state
+                ...state,
+                actionUndo: true,
+                undoId: action.undoId
+            };
+        case 'UNDO_UI_HIDE':
+            return {
+                ...state,
+                actionUndo: false,
+                undoId:''
             };
         case 'UPDATE_ARCHIVE':
             return {

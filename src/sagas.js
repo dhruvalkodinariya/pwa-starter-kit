@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest ,select,take,all,race,throttle,spawn,delay} from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest ,select,take,all,race,throttle,fork,spawn,delay} from 'redux-saga/effects'
 
 
 // const delay = (sec) => new Promise((res,rej)=>{
@@ -61,7 +61,7 @@ function* mySaga() {
 // }
   while(true){
     const action = yield take('ARCHIVE');
-    yield spawn(handleArchive , action);
+    yield fork(handleArchive , action);
   }
 yield throttle(5000, 'INPUT_CHANGING', handleInputChanging)
 yield takeLatest('INPUT_CHANGED', handleInput);
@@ -81,21 +81,21 @@ yield takeLatest('INPUT_CHANGED', handleInput);
 function* handleArchive(action){
   const undoId = `UNDO_${action.archiveId}`;
   const threadId = action.id;
-  // yield put({type:'UPDATE_UNDO_UI',undoId});
+  yield put({type:'UNDO_UI_SHOW',undoId});
 
   yield put({type:'UPDATE_ARCHIVE',id: threadId,archive:true});
 
-  const raceData = yield race({
-    undo : take(action=>action.type==='UNDO'&&action.id===undoId),
-    archive : delay(5000)
-  })
+  // const raceData = yield race({
+  //   undo : take(action=>action.type==='UNDO'&&action.id===undoId),
+  //   archive : delay(5000)
+  // })
 
   const { undo, archive } = yield race({
-    undo: take(action => action.type === 'UNDO' && action.undoId === undoId),
+    undo: take(action => action.type === 'UNDO' && action.undoId == undoId),
     archive: delay(5000)
   })
 
-  yield put({type:'HIDE_UNDO',id : undoId})
+  yield put({type:'UNDO_UI_HIDE',id : undoId})
 
   if(undo){
     yield put({type:'UPDATE_ARCHIVE',id: threadId,archive:false});
