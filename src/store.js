@@ -49,3 +49,5 @@ store.addReducers({
 
 console.log('new Feature added.')
 
+console.log('changes done.')
+
