@@ -47,3 +47,8 @@ store.addReducers({
   app
 });
 
+<<<<<<< HEAD
+=======
+console.log('from redux store.js')
+console.log('another changes..')
+>>>>>>> 881c134dbdd96def97108d5872594c88cc6de4c8
