@@ -47,5 +47,5 @@ store.addReducers({
   app
 });
 
-console.log('only new change.')
+console.log('new Feature added.')
 
