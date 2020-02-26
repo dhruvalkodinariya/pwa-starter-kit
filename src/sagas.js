@@ -174,8 +174,4 @@ export default function* rootSaga() {
   ])
 }
 
-console.log('changes done...')
-console.log("another changes..")
-
-console.log("master first changes")
-console.log("master second changes")
+console.log('only changes done.')

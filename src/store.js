@@ -47,5 +47,4 @@ store.addReducers({
   app
 });
 
-console.log('from redux store.js')
-console.log('another changes..')
+console.log('only new change.')
