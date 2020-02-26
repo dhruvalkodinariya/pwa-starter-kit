@@ -177,5 +177,5 @@ export default function* rootSaga() {
 
 
 
-console.log('only changes done.')
+console.log('Here also added new feature.')
 
