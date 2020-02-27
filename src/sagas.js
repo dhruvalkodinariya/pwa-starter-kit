@@ -178,5 +178,3 @@ export default function* rootSaga() {
 
 
 console.log('Here also added new feature.')
-console.log('hello')
-console('fhsdfhds')
