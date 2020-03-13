@@ -142,7 +142,7 @@ function getEstimatesDetails(){
 
 function* helloSaga(){
   let count = 0;
-  console.log('hello from Saga')
+  // console.log('hello from Saga')
   yield takeLatest('ACTION_1',action1Handler)
   yield takeLatest('ACTION_2',action1Handler)
   yield takeLatest('ACTION_3',action1Handler)
@@ -174,9 +174,3 @@ export default function* rootSaga() {
   ])
 }
 
-
-
-
-console.log('Here also added new feature.')
-
-console.log('jfghfdhj')
