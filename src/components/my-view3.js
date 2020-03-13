@@ -32,13 +32,19 @@ import './shop-cart.js';
 import { SharedStyles } from './shared-styles.js';
 import { ButtonSharedStyles } from './button-shared-styles.js';
 import { addToCartIcon } from './my-icons.js';
+import  *  as selectors from '../selectors/view3.js';
 
 class MyView3 extends connect(store)(PageViewElement) {
   static get properties() {
     return {
       // This is the data from the store.
       _quantity: { type: Number },
-      _error: { type: String }
+      _error: { type: String },
+      userId: {
+        type: String
+      },
+      user:{type:Object}
+
     };
   }
 
@@ -78,8 +84,9 @@ class MyView3 extends connect(store)(PageViewElement) {
   }
 
   render() {
+    console.log("render called view3");
     return html`
-      <section>
+      <!-- <section>
         <h2>Redux example: shopping cart</h2>
         <div class="cart">${addToCartIcon}<div class="circle small">${this._quantity}</div></div>
         <p>This is a slightly more advanced Redux example, that simulates a
@@ -104,7 +111,10 @@ class MyView3 extends connect(store)(PageViewElement) {
             Checkout
           </button>
         </p>
-      </section>
+      </section> -->
+      
+      <span>Name: ${this.user.name}</span>
+      <span>Email: ${this.user.email}</span>
     `;
   }
 
@@ -112,10 +122,32 @@ class MyView3 extends connect(store)(PageViewElement) {
     store.dispatch(checkout());
   }
 
+  get userId(){
+    return this._userId;
+  }
+  set userId(val){
+    if(this._userId==val)
+      return;
+    
+    let oldVal = this._userId;
+    this._userId = val;
+    this.userSelector = selectors.userFactory(this._userId);
+    this.user = this.userSelector(store.getState())
+
+  }
+  constructor(){
+    super();
+    this.userId = "u1";
+    this.userSelector = selectors.userFactory(this.userId)
+  }
+
   // This is called every time something is updated in the store.
   stateChanged(state) {
+    console.log("stateChanged called")
     this._quantity = cartQuantitySelector(state);
     this._error = state.shop.error;
+    
+    this.user = this.userSelector(state);
   }
 }
 

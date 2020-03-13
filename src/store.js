@@ -20,6 +20,7 @@ import { lazyReducerEnhancer } from 'pwa-helpers/lazy-reducer-enhancer.js';
 import createSagaMiddleware from 'redux-saga'
 
 import app from './reducers/app.js';
+import view3 from './reducers/view3';
 import rootSaga from './sagas.js';
 
 // Sets up a Chrome extension for time travel debugging.
@@ -44,8 +45,9 @@ export const store = createStore(
 sagaMiddleware.run(rootSaga)
 // Initially loaded reducers.
 store.addReducers({
-  app
+  app,
+  view3
 });
 
-console.log('from redux store.js')
-console.log('another changes..')
+
+window.store = store;
