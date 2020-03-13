@@ -174,9 +174,3 @@ export default function* rootSaga() {
   ])
 }
 
-
-// console.log("validation first")
-// console.log("validation second")
-
-// console.log('changes done...')
-// console.log("another changes..")

@@ -49,5 +49,5 @@ store.addReducers({
   view3
 });
 
-
 window.store = store;
+
